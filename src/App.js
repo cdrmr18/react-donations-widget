@@ -1,8 +1,12 @@
-import "./App.css";
+import "./App.scss";
 import MainCard from "./components/MainCard";
 
 function App() {
-  return <MainCard />;
+  return (
+    <div className="app-container">
+      <MainCard />
+    </div>
+  );
 }
 
 export default App;
