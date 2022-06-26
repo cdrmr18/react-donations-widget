@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Box } from "@chakra-ui/react";
+import starterData from "../data";
 
 const MainCard = (props) => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [data, setData] = useState(starterData);
 
   return (
     <Box
@@ -13,11 +15,11 @@ const MainCard = (props) => {
       overflow="hidden"
       className="main-card"
     >
-      <Box p="6">
-        <div class="logo">logo</div>
+      <Box p="3">
+        <img src={data.logo} alt="pug" style={{ height: "300px" }} />
       </Box>
       <Box p="6" m="2" bg="white" borderRadius="lg">
-        <h4 class="title">data name</h4>
+        <h4 class="title">{data.title}</h4>
         <p>Thermometer</p>
       </Box>
     </Box>
