@@ -1,22 +1,38 @@
 import React, { useState } from "react";
-import { Progress, Badge } from "@chakra-ui/react";
+import {
+  Progress,
+  Badge,
+  FormControl,
+  FormLabel,
+  Radio,
+  RadioGroup,
+  HStack,
+  Button,
+} from "@chakra-ui/react";
 import "./ProgressBar.scss";
 
 const ProgressBar = ({ goal, raised }) => {
   const [currentRaised, setCurrentRaised] = useState(raised);
-  const [goalPercentage, setGoalPercentage] = useState(
-    (currentRaised / goal) * 100
-  );
+  const [value, setValue] = useState("10");
+  // const [displayModal, setDisplayModal] = useState(false);
 
   const updateProgress = (currentRaised, goal) => {
-    const percentage = (currentRaised / goal) * 100;
-    setCurrentRaised(percentage);
+    return (currentRaised / goal) * 100;
+  };
+
+  const handleChange = (e) => {
+    setValue(e);
+  };
+
+  const handleDonation = () => {
+    setCurrentRaised(currentRaised + parseInt(value));
+    //setHandleModal(true);
   };
 
   return (
     <div>
       <Badge borderRadius="full" px="5" py="3" colorScheme="teal" mb="5">
-        Raised ${raised} out of ${goal} goal!
+        Raised ${currentRaised} out of ${goal} goal!
       </Badge>
 
       <div className="progress-labels">
@@ -24,12 +40,32 @@ const ProgressBar = ({ goal, raised }) => {
         <div>100%</div>
       </div>
       <Progress
-        value={goalPercentage}
+        value={updateProgress(currentRaised, goal)}
         size="md"
         colorScheme="pink"
-        mb="4"
+        mb="10"
         borderRadius="lg"
       />
+
+      <FormControl as="fieldset">
+        <FormLabel as="legend">How much would you like to donate?</FormLabel>
+        <RadioGroup onChange={handleChange} value={value}>
+          <HStack spacing="24px">
+            <Radio value="10">$10</Radio>
+            <Radio value="20">$20</Radio>
+            <Radio value="50">$50</Radio>
+            <Radio value="100">$100</Radio>
+          </HStack>
+        </RadioGroup>
+        <Button
+          colorScheme="teal"
+          width="100%"
+          mt="6"
+          onClick={() => handleDonation()}
+        >
+          Donate
+        </Button>
+      </FormControl>
     </div>
   );
 };
