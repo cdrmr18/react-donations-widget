@@ -6,6 +6,19 @@ const MainCard = (props) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [data, setData] = useState(starterData);
 
+  // useEffect(() => {
+  //   //api call with fetch
+  //   fetch("http://localhost:3000/v1/api/organizations")
+  //     .then((res) => res.json)
+  //     .then((result) => {
+  //       setIsLoaded(true);
+  //       setData(result.data);
+  //     })
+  // .catch((error) => {
+  //   console.error('Error:', error);
+  // });
+  // }, []);
+
   return (
     <Box
       bg="lightblue"
