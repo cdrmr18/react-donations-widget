@@ -41,7 +41,7 @@ const MainCard = (props) => {
       ></Box>
       <Box p="6" m="2" bg="white" borderRadius="lg">
         <h2 className="title">{data.title}</h2>
-        <ProgressBar goal={data.goal} raised={data.raised} />
+        <ProgressBar goal={data.goal} raised={data.raised} title={data.title} />
       </Box>
     </Box>
   );

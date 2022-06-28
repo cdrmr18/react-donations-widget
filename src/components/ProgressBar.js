@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Modal from "./Modal";
+import DonationModal from "./DonationModal";
 import {
   Progress,
   Badge,
@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import "./ProgressBar.scss";
 
-const ProgressBar = ({ goal, raised }) => {
+const ProgressBar = ({ goal, raised, title }) => {
   const [currentRaised, setCurrentRaised] = useState(raised);
   const [value, setValue] = useState("10");
   const [displayModal, setDisplayModal] = useState(false);
@@ -71,7 +71,9 @@ const ProgressBar = ({ goal, raised }) => {
           Donate
         </Button>
       </FormControl>
-      {displayModal && <Modal handleModal={handleModal} />}
+      {displayModal && (
+        <DonationModal onClick={handleModal} value={value} title={title} />
+      )}
     </div>
   );
 };
