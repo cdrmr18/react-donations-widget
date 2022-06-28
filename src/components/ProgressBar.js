@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Modal from "./Modal";
 import {
   Progress,
   Badge,
@@ -14,7 +15,7 @@ import "./ProgressBar.scss";
 const ProgressBar = ({ goal, raised }) => {
   const [currentRaised, setCurrentRaised] = useState(raised);
   const [value, setValue] = useState("10");
-  // const [displayModal, setDisplayModal] = useState(false);
+  const [displayModal, setDisplayModal] = useState(false);
 
   const updateProgress = (currentRaised, goal) => {
     return (currentRaised / goal) * 100;
@@ -24,9 +25,13 @@ const ProgressBar = ({ goal, raised }) => {
     setValue(e);
   };
 
+  const handleModal = () => {
+    setDisplayModal(!displayModal);
+  };
+
   const handleDonation = () => {
     setCurrentRaised(currentRaised + parseInt(value));
-    //setHandleModal(true);
+    handleModal();
   };
 
   return (
@@ -66,6 +71,7 @@ const ProgressBar = ({ goal, raised }) => {
           Donate
         </Button>
       </FormControl>
+      {displayModal && <Modal handleModal={handleModal} />}
     </div>
   );
 };
