@@ -47,7 +47,7 @@ const ProgressBar = ({ goal, raised, title }) => {
       <Progress
         value={updateProgress(currentRaised, goal)}
         size="md"
-        colorScheme="pink"
+        colorScheme={currentRaised < goal ? "pink" : "green"}
         mb="10"
         borderRadius="lg"
       />
@@ -67,6 +67,7 @@ const ProgressBar = ({ goal, raised, title }) => {
           width="100%"
           mt="6"
           onClick={() => handleDonation()}
+          disabled={currentRaised < goal ? "" : "true"}
         >
           Donate
         </Button>
